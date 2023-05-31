@@ -1,14 +1,11 @@
-import { Box } from "@mui/material"
+import Header from "./components/Header"
+
 
 function App() {
-  
-
   return (
-    <>
-      <Box sx={{fontSize:50 }}>
-        Hello from Vite
-        </Box>
-    </>
+    <div className ="text-3xl">
+     <Header />
+    </div>
   )
 }
 
