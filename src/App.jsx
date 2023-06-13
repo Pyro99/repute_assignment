@@ -1,14 +1,19 @@
 // import Header from "./components/Header";
 // import CardContainer from "./components/CardContainer";
-import ChatBox from "./components/ChatBox";
+// import ChatBox from "./components/ChatBox";
+import { Provider } from "react-redux";
+import Chats from "./components/Chats";
+import store from "./utils/store";
 
 const App = () => {
   return (
-  <div className='min-h-screen flex justify-end items-end'>
+  <Provider store ={store}>
     {/* <Header />
     <CardContainer /> */}
-    <ChatBox />
-  </div>
+    {/* <ChatBox /> */}
+    <Chats />
+    
+  </Provider>
   )
 };
 

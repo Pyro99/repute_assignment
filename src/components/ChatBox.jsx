@@ -1,22 +1,51 @@
-import { user_logo } from "../utils/constants"
+import { AccountCircle, CancelPresentation } from "@mui/icons-material"
+import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux";
+import { sendMessage } from "../utils/textSlice";
+import { removeChatBox } from "../utils/chatSlice";
+import { randomMessageGenerator } from "../utils/helper";
 
-const ChatBox = () => {
-  return (
-    <div className ='h-[700px] w-72 bg-gray-400 rounded-tl-xl'>
-        <div className="h-16 bg-gray-800 text-white flex justify-between items-center">
-            <div className ="flex">
-                <img
-                className="h-7 px-2"
-                src={user_logo}
-                alt="user_icon"
-                />
-                <p className="text-xl">Chat</p>
-            </div>
-            <div className="flex justify-between text-xl">
-                <p className="px-3">+</p>
-                <p className="px-2">V</p>
-            </div>
+const ChatBox = ({number}) => {
+    const [text,setText] = useState("");
+
+    const dispatch = useDispatch();
+    const messages = useSelector(store => store.text);
+
+    return (
+    <div className ='min-h-[600px] w-72 bg-gray-400 mr-4 flex flex-col justify-between rounded-tl-2xl'>
+        <div className ="flex justify-between px-2 bg-gray-800 text-white rounded-tl-2xl py-1">
+            <p>Lorem Ipsum</p>
+            <button onClick = {()=> dispatch(removeChatBox(number - 1))}><CancelPresentation /></button>
         </div>
+        <div className="h-[400px] overflow-auto"> 
+        {messages && messages.map(message => (
+            <div key ={randomMessageGenerator(3)}>
+            <div className="flex gap-2 p-2">
+            {message && <AccountCircle /> }
+            <p>{message}</p>
+            </div>
+            {message &&  <div className="flex gap-2 p-2 justify-end">
+            <AccountCircle /> 
+            <p>{"Lorem Ipsum Doler Set"}</p> 
+            </div>
+            }
+            </div>
+        ))}
+        </div>
+        <div className="flex justify-between px-2 py-2">
+            <div className="flex flex-grow">
+            <textarea
+            value={text}
+            rows="3"
+            className="bg-transparent outline-none px-3 border border-black p-2 text-black" 
+            type="text" 
+            onChange={(e) => setText(e.target.value)}
+            placeholder='Write a message...' />
+            </div>
+            <button onClick={() => {dispatch(sendMessage(text))
+            setText("")
+            }}>Send</button>
+        </div>   
     </div>
   )
 }
