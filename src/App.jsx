@@ -1,12 +1,15 @@
-import Header from "./components/Header"
+// import Header from "./components/Header";
+// import CardContainer from "./components/CardContainer";
+import ChatBox from "./components/ChatBox";
 
-
-function App() {
+const App = () => {
   return (
-    <div className ="text-3xl">
-     <Header />
-    </div>
+  <div className='min-h-screen flex justify-end items-end'>
+    {/* <Header />
+    <CardContainer /> */}
+    <ChatBox />
+  </div>
   )
-}
+};
 
 export default App
