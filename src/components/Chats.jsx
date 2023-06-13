@@ -3,7 +3,6 @@ import { useState } from "react"
 import ChatBox from "./ChatBox";
 import { useDispatch, useSelector } from "react-redux";
 import { addChatBox } from "../utils/chatSlice";
-import { randomMessageGenerator } from "../utils/helper";
 
 const Chats = () => {
   const [open,setOpen] = useState(false);
